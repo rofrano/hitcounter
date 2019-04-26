@@ -27,7 +27,7 @@ class TestHitcounterService(unittest.TestCase):
     def test_increment_hitcount(self):
         """ Increment the hit count """
         # increment the counter
-        resp = self.client.post('/hits')
+        resp = self.client.put('/hits')
         self.assertEqual(resp.status_code, 200)
         body = json.loads(resp.data)
         count = body['hits']

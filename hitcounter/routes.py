@@ -27,12 +27,12 @@ class HitCounter(Resource):
     def get(self):
         """ returns the current hit count """
         global hits
-        return {'hits': hits}
+        return {'hits': hits}, 200
 
     @ns.doc('increment_hits')
-    @ns.response(201, 'Counter incremented successfully')
-    def post(self):
+    @ns.response(200, 'Counter incremented successfully')
+    def put(self):
         """ increments the counter by 1 """
         global hits
         hits += 1
-        return {'hits': hits}
+        return {'hits': hits}, 200
