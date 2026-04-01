@@ -16,7 +16,7 @@ api = Api(
 
 ns = api.namespace("hits", description="HitCounter Service")
 
-hits_model = api.model("Hits", {"hits": fields.Integer})
+hits_model = api.model("Hits", {"counter": fields.Integer})
 
 
 @ns.route("/", strict_slashes=False)
@@ -27,8 +27,8 @@ class HitCounter(Resource):
     @ns.marshal_with(hits_model)
     def get(self):
         """returns the current hit count"""
-        global hits
-        return {"hits": hits}, 200
+        # global hits
+        return {"counter": hits}, 200
 
     @ns.doc("increment_hits")
     @ns.response(200, "Counter incremented successfully")
@@ -36,4 +36,4 @@ class HitCounter(Resource):
         """increments the counter by 1"""
         global hits
         hits += 1
-        return {"hits": hits}, 200
+        return {"counter": hits}, 200
